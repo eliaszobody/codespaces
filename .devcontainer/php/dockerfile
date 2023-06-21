@@ -1,0 +1,9 @@
+FROM php
+
+RUN apt-get update
+
+RUN apt-get -y install postgresql postgresql-contrib libpq-dev
+
+RUN docker-php-ext-install pdo pdo_pgsql
+
+RUN apt-get install php-pgsql
