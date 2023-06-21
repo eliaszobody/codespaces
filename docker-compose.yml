@@ -16,10 +16,15 @@ services:
         depends_on:
             - php
         environment:
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: root
-            POSTGRES_DB: test_db
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+            POSTGRES_DB: ${DB_DATABASE}
         ports:
             - "5432:5432"
+        volumes:
+            - ./docker/postgres:/var/lib/postgresql/data
     php:
         build: .devcontainer/php
+        restart: always
+        environment:
+            APP_ENV: ${APP_ENV}
